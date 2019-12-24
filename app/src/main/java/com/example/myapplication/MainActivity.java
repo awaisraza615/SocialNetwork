@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
 
     private CircleImageView NavProfileImage;
     private TextView NavProfileUserName;
+    private ImageButton AddNewPostButton;
 
 
     private FirebaseAuth mAuth;
@@ -61,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(mToolbar);
         getSupportActionBar().setTitle("Home");
 
+        AddNewPostButton = (ImageButton)findViewById(R.id.add_new_post_button);
 
         drawerLayout = (DrawerLayout) findViewById(R.id.drawable_layout);
         actionBarDrawerToggle= new ActionBarDrawerToggle(MainActivity.this,drawerLayout,R.string.drawer_open,R.string.drawer_close);
@@ -107,6 +110,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -115,6 +119,20 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+        AddNewPostButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                
+                senduserToPostActivity();
+            }
+        });
+    }
+
+    private void senduserToPostActivity() {
+
+        Intent addNewPostIntent = new Intent(MainActivity.this,PostActivity.class);
+        startActivity(addNewPostIntent);
 
     }
 
@@ -151,6 +169,10 @@ public class MainActivity extends AppCompatActivity {
     {
          switch (item.getItemId())
          {
+             case R.id.nav_post:
+
+                 senduserToPostActivity();
+                  break;
              case R.id.nav_profile:
                  Toast.makeText(this,"Profile",Toast.LENGTH_SHORT).show();
                  break;
