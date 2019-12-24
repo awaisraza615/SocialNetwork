@@ -1,9 +1,9 @@
 package com.example.myapplication;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.accessibilityservice.AccessibilityService;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
@@ -14,11 +14,20 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.Continuation;
+import com.google.android.gms.tasks.OnCanceledListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.squareup.picasso.Picasso;
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -37,7 +46,7 @@ public class SetupActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private DatabaseReference UsersRef;
     private ProgressDialog loadingBar;
-    String currentUserId;
+    String currentUserID;
     private StorageReference UserProfileImageRef;
     final static int Gallery_Pick =1;
 
@@ -48,24 +57,25 @@ public class SetupActivity extends AppCompatActivity {
 
 
 
+
+
+        loadingBar= new ProgressDialog(this);
+        mAuth = FirebaseAuth.getInstance();
+        currentUserID = mAuth.getCurrentUser().getUid();
+        UsersRef = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserID);
+        UserProfileImageRef = FirebaseStorage.getInstance().getReference().child("Profile Images");
+
         UserName = (EditText) findViewById(R.id.setup_username);
         FullName = (EditText) findViewById(R.id.setup_fullname);
         CountryName = (EditText) findViewById(R.id.setup_country_name);
         SaveInformationbutton = (Button)findViewById(R.id.setup_information_button);
         ProfileImage = (CircleImageView) findViewById(R.id.setup_profile_image);
 
-        loadingBar= new ProgressDialog(this);
-        mAuth= FirebaseAuth.getInstance();
-        currentUserId = mAuth.getCurrentUser().getUid();
-        UsersRef = FirebaseDatabase.getInstance().getReference().child(currentUserId);
-
-        UserProfileImageRef = FirebaseStorage.getInstance().getReference().child("profile images");
-
 
         SaveInformationbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                
+
                 saveAccountSetupinformation();
             }
 
@@ -85,78 +95,99 @@ public class SetupActivity extends AppCompatActivity {
             }
         });
 
+
+        UsersRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot)
+            {
+                if(dataSnapshot.exists())
+                {
+                    if (dataSnapshot.hasChild("profileimage"))
+                    {
+                        String image = dataSnapshot.child("profileimage").getValue().toString();
+                        Picasso.get().load(image).placeholder(R.drawable.profile).into(ProfileImage);
+                    }
+                    else
+                    {
+                        Toast.makeText(SetupActivity.this, "Please select profile image first.", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 
 
-
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == Gallery_Pick && resultCode == RESULT_OK && data!= null)
-        {
+
+        if (requestCode == Gallery_Pick && resultCode == RESULT_OK && data != null) {
             Uri ImageUri = data.getData();
-            CropImage.activity()
+
+            CropImage.activity(ImageUri)
                     .setGuidelines(CropImageView.Guidelines.ON)
-                    .setAspectRatio(1,1)
+                    .setAspectRatio(1, 1)
                     .start(this);
         }
 
-        if (requestCode==CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE)
-        {
+        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
             CropImage.ActivityResult result = CropImage.getActivityResult(data);
 
-            if (resultCode==RESULT_OK)
-            {
+            if (resultCode == RESULT_OK) {
                 loadingBar.setTitle("Profile Image");
-                loadingBar.setMessage("Please Wait, while we are updating Your Profile Image...");
+                loadingBar.setMessage("Please wait, while we updating your profile image...");
                 loadingBar.show();
                 loadingBar.setCanceledOnTouchOutside(true);
 
                 Uri resultUri = result.getUri();
 
-                StorageReference filePath = UserProfileImageRef.child(currentUserId+ ".jpg");
+                final StorageReference filePath = UserProfileImageRef.child(currentUserID + ".jpg");
 
-                filePath.putFile(resultUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+                filePath.putFile(resultUri).continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
                     @Override
-                    public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
-                        if (task.isSuccessful())
-                        {
-                            Toast.makeText(SetupActivity.this, "Profile image stored succesfully to firebase storage...", Toast.LENGTH_SHORT).show();
-                            final String downloadUrl = task.getResult().getMetadata().getReference().getDownloadUrl().toString();
+                    public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
+                        if (!task.isSuccessful()) {
+                            throw task.getException();
+                        }
+                        return filePath.getDownloadUrl();
+                    }
+                }).addOnCompleteListener(new OnCompleteListener<Uri>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Uri> task) {
+                        if (task.isSuccessful()) {
+                            Uri downUri = task.getResult();
+                            Toast.makeText(SetupActivity.this, "Profile Image stored successfully to Firebase storage...", Toast.LENGTH_SHORT).show();
+                            final String downloadUrl = downUri.toString();
                             UsersRef.child("profileimage").setValue(downloadUrl)
                                     .addOnCompleteListener(new OnCompleteListener<Void>() {
+
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
-                                       
-                                            if (task.isSuccessful())
-                                            {
-                                                Intent selfIntent = new Intent(SetupActivity.this,SetupActivity.class);
+                                            if (task.isSuccessful()) {
+                                                Intent selfIntent = new Intent(SetupActivity.this, SetupActivity.class);
                                                 startActivity(selfIntent);
-                                                Toast.makeText(SetupActivity.this, "Profile Image is stored to firebase database successfully...", Toast.LENGTH_SHORT).show();
+
+                                                Toast.makeText(SetupActivity.this, "Profile Image stored to Firebase Database Successfully...", Toast.LENGTH_SHORT).show();
                                                 loadingBar.dismiss();
-                                            }
-                                            else 
-                                            {
+                                            } else {
                                                 String message = task.getException().getMessage();
-                                                Toast.makeText(SetupActivity.this, "Error Occured: "+message, Toast.LENGTH_SHORT).show();
+                                                Toast.makeText(SetupActivity.this, "Error Occured: " + message, Toast.LENGTH_SHORT).show();
                                                 loadingBar.dismiss();
                                             }
-                                            
                                         }
                                     });
                         }
+
                     }
+
                 });
 
             }
-            else
-            {
-
-                Toast.makeText(this, "Error occured image canot crop", Toast.LENGTH_SHORT).show();
-
-                loadingBar.dismiss();
-            }
-
         }
     }
 
@@ -211,18 +242,18 @@ public class SetupActivity extends AppCompatActivity {
                         Toast.makeText(SetupActivity.this, "Error occured: "+message, Toast.LENGTH_SHORT).show();
                         loadingBar.dismiss();
                     }
+
                 }
             });
         }
-
     }
 
-    private void SendUserToMainActivity() {
 
-        Intent mainIntent = new Intent(SetupActivity.this,MainActivity.class);
+    private void SendUserToMainActivity()
+    {
+        Intent mainIntent = new Intent(SetupActivity.this, MainActivity.class);
         mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(mainIntent);
         finish();
-
     }
 }
