@@ -61,7 +61,7 @@
                         android:id="@+id/text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="has been updated a post"
+                        android:text="has updated a post"
                         android:textColor="@android:color/darker_gray"
                         android:textSize="13sp"
                         android:textStyle="bold"/>
@@ -77,6 +77,7 @@
                         android:id="@+id/post_time"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="4dp"
                         android:text="time"
                         android:textColor="@android:color/black"
                         android:textSize="13sp"

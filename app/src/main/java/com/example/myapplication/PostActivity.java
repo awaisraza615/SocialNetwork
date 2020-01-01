@@ -129,12 +129,12 @@ public class PostActivity extends AppCompatActivity {
     private void StoringImageToFirebaseStorage()
     {
         Calendar calFordDate = Calendar.getInstance();
-        SimpleDateFormat currentDate = new SimpleDateFormat("dd-MMMM-yyyy");
+        SimpleDateFormat currentDate = new SimpleDateFormat("dd-MMM-yyyy");
         saveCurrentDate = currentDate.format(calFordDate.getTime());
 
         Calendar calFordTime = Calendar.getInstance();
         SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm");
-        saveCurrentTime = currentTime.format(calFordTime.getTime());
+        saveCurrentTime = currentTime.format(calFordDate.getTime());
 
 
         postRandomName = saveCurrentDate + saveCurrentTime;

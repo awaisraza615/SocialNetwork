@@ -161,7 +161,7 @@ public class MainActivity extends AppCompatActivity {
                 postsViewHolder.setProfileImage(getApplicationContext(),posts.getProfileimage());
                 postsViewHolder.setPostImage(getApplicationContext(),posts.getPostimage());
                 postsViewHolder.setDate(posts.getDate());
-                postsViewHolder.SetTime(posts.getTime());
+                postsViewHolder.setTime(posts.getTime());
             }
             @NonNull
             @Override
@@ -194,9 +194,10 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
-        public void SetTime (String time){
+        public void setTime(String time)
+        {
             TextView PostTime = (TextView) mView.findViewById(R.id.post_time);
-            PostTime.setText("     "+time);
+            PostTime.setText("    " + time);
         }
 
         public void setDate (String date){
