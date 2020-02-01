@@ -310,7 +310,7 @@ public class MainActivity extends AppCompatActivity {
                  senduserToPostActivity();
                   break;
              case R.id.nav_profile:
-                 Toast.makeText(this,"Profile",Toast.LENGTH_SHORT).show();
+                 SendUserToProfileActivity();
                  break;
              case R.id.nav_home:
                  Toast.makeText(this,"Home",Toast.LENGTH_SHORT).show();
@@ -319,19 +319,37 @@ public class MainActivity extends AppCompatActivity {
                  Toast.makeText(this,"Friend List",Toast.LENGTH_SHORT).show();
                  break;
              case R.id.nav_find_friends:
-                 Toast.makeText(this,"Find Friends",Toast.LENGTH_SHORT).show();
+                 SendUserToFindfriendsActivity();
                  break;
              case R.id.nav_messages:
                  Toast.makeText(this,"Messages",Toast.LENGTH_SHORT).show();
                  break;
              case R.id.nav_settings:
-                 Toast.makeText(this,"Settings",Toast.LENGTH_SHORT).show();
+                 SendUserToSettingsActivity();
                  break;
              case R.id.nav_logout:
                  mAuth.signOut();
                  senduserTologinActivity();
                  break;
          }
+    }
+    private void SendUserToSettingsActivity()
+    {
+        Intent loginIntent = new Intent(MainActivity.this,SettingsActivity.class);
+        startActivity(loginIntent);
+
+    }
+    private void SendUserToProfileActivity()
+    {
+        Intent loginIntent = new Intent(MainActivity.this,ProfileActivity.class);
+        startActivity(loginIntent);
+
+    }
+    private void SendUserToFindfriendsActivity()
+    {
+        Intent loginIntent = new Intent(MainActivity.this,FindFriendsActivity.class);
+        startActivity(loginIntent);
+
     }
 
 
