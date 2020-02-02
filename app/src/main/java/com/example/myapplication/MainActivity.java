@@ -158,7 +158,9 @@ public class MainActivity extends AppCompatActivity {
     }
     private void DisplayAllUsersPosts() {
 
-        FirebaseRecyclerOptions<Posts> options = new FirebaseRecyclerOptions.Builder<Posts>().setQuery(PostsRef, Posts.class).build();
+        Query SortPostsInDesendingOrder = PostsRef.orderByChild("counter");
+
+        FirebaseRecyclerOptions<Posts> options = new FirebaseRecyclerOptions.Builder<Posts>().setQuery(SortPostsInDesendingOrder, Posts.class).build();
         FirebaseRecyclerAdapter adapter = new FirebaseRecyclerAdapter<Posts, PostsViewHolder>(options) {
             @Override
             protected void onBindViewHolder(@NonNull PostsViewHolder postsViewHolder, int position, @NonNull Posts posts) {
@@ -184,9 +186,9 @@ public class MainActivity extends AppCompatActivity {
                 postsViewHolder.CommentPostButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-          /*              Intent commentsIntent = new Intent(MainActivity.this,CommentsActivity.class);
+                        Intent commentsIntent = new Intent(MainActivity.this,CommentsActivity.class);
                         commentsIntent.putExtra("PostKey",PostKey);
-                        startActivity(commentsIntent);*/
+                        startActivity(commentsIntent);
 
                     }
                 });

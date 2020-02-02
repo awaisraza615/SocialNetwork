@@ -43,6 +43,7 @@ public class LoginActivity extends AppCompatActivity {
     private static final int RC_SIGN_IN = 1;
     private GoogleApiClient mGoogleSignInClient;
     private static final String TAG = "LoginActivity";
+    private TextView ForgetPasswordLink;
 
 
 
@@ -63,6 +64,7 @@ public class LoginActivity extends AppCompatActivity {
         UserPassword = (EditText) findViewById(R.id.login_password);
         LoginButton = (Button) findViewById(R.id.login_button);
         googleSignInButton = (ImageView) findViewById(R.id.google_signin_button);
+        ForgetPasswordLink = findViewById(R.id.forget_password_link);
 
 
         NeedNewAccountLink.setOnClickListener(new View.OnClickListener() {
@@ -76,7 +78,14 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 AllowingUserToLogin();
-               
+
+            }
+        });
+        ForgetPasswordLink.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                startActivity(new Intent(LoginActivity.this,ResetPasswordActivity.class));
             }
         });
 
