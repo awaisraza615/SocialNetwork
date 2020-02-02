@@ -99,8 +99,11 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/mainBackground"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+
             android:orientation="horizontal">
             <ImageButton
                 android:id="@+id/like_button"

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/register"
+    android:background="@color/Mate"
     tools:context=".SettingsActivity">
 
 
@@ -49,7 +49,8 @@
                 android:textColor="@android:color/background_dark"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:layout_marginTop="4dp"/>
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="10dp"/>
 
             <EditText
                 android:id="@+id/settings_username"

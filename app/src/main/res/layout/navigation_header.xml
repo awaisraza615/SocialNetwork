@@ -4,7 +4,8 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="200dp"
-    android:background="@drawable/header">
+
+    android:background="@color/Mate">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/nav_profile_image"
