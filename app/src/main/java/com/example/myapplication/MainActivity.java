@@ -50,9 +50,9 @@ public class MainActivity extends AppCompatActivity {
 
 
     private FirebaseAuth mAuth;
-    private DatabaseReference UsersRef,PostsRef;;
+    private DatabaseReference UsersRef,PostsRef,LikesRaf;;
     String currentUserID;
-
+    Boolean LikeChecker = false;
 
 
 
@@ -65,6 +65,8 @@ public class MainActivity extends AppCompatActivity {
         currentUserID = mAuth.getCurrentUser().getUid();
         UsersRef = FirebaseDatabase.getInstance().getReference().child("Users");
         PostsRef = FirebaseDatabase.getInstance().getReference().child("Posts");
+
+        LikesRaf = FirebaseDatabase.getInstance().getReference().child("Likes");
 
         query = FirebaseDatabase.getInstance().getReference().child("Posts");
 
@@ -96,38 +98,42 @@ public class MainActivity extends AppCompatActivity {
         postList.setLayoutManager(linearLayoutManager);
 
 
-
-        UsersRef.child(currentUserID).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot)
-            {
-                if(dataSnapshot.exists())
+        if (mAuth.getCurrentUser()!=null)
+        {
+            currentUserID = mAuth.getCurrentUser().getUid();
+            UsersRef.child(currentUserID).addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot)
                 {
-                    if(dataSnapshot.hasChild("fullname"))
+                    if(dataSnapshot.exists())
                     {
-                        String fullname = dataSnapshot.child("fullname").getValue().toString();
+                        if(dataSnapshot.hasChild("fullname"))
+                        {
+                            String fullname = dataSnapshot.child("fullname").getValue().toString();
 
-                        NavProfileUserName.setText(fullname);
-                    }
-                    if(dataSnapshot.hasChild("profileimage"))
-                    {
-                        //String image = "https://firebasestorage.googleapis.com/v0/b/poster-44926.appspot.com/o/Profile%20Images%2FjIR4L7pSWphSsBlBT8xu52FXI6L2.jpg?alt=media&token=86f09465-0562-4a00-ae15-1b5d9d94727b";
-                        String image = dataSnapshot.child("profileimage").getValue().toString();
-                        Picasso.get().load(image).placeholder(R.drawable.profile).into(NavProfileImage);
-                    }
-                    else
-                    {
-                        Toast.makeText(MainActivity.this, "Profile name do not exists...", Toast.LENGTH_SHORT).show();
+                            NavProfileUserName.setText(fullname);
+                        }
+                        if(dataSnapshot.hasChild("profileimage"))
+                        {
+                            //String image = "https://firebasestorage.googleapis.com/v0/b/poster-44926.appspot.com/o/Profile%20Images%2FjIR4L7pSWphSsBlBT8xu52FXI6L2.jpg?alt=media&token=86f09465-0562-4a00-ae15-1b5d9d94727b";
+                            String image = dataSnapshot.child("profileimage").getValue().toString();
+                            Picasso.get().load(image).placeholder(R.drawable.profile).into(NavProfileImage);
+                        }
+                        else
+                        {
+                            Toast.makeText(MainActivity.this, "Profile name do not exists...", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 }
-            }
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
 
-            }
-        });
+                }
+            });
 
+
+        }
 
 
 
@@ -164,6 +170,7 @@ public class MainActivity extends AppCompatActivity {
                 postsViewHolder.setDate(posts.getDate());
                 postsViewHolder.setTime(posts.getTime());
 
+                postsViewHolder.setLikeButtonStatus(PostKey);
 
                 postsViewHolder.mView.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -173,6 +180,49 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(clickPostIntent);
                     }
                 });
+
+                postsViewHolder.CommentPostButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+          /*              Intent commentsIntent = new Intent(MainActivity.this,CommentsActivity.class);
+                        commentsIntent.putExtra("PostKey",PostKey);
+                        startActivity(commentsIntent);*/
+
+                    }
+                });
+                postsViewHolder.LikePostButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v)
+                    {
+                        LikeChecker = true;
+                        LikesRaf.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+                            {
+                                if(LikeChecker.equals(true)){
+
+                                    if(dataSnapshot.child(PostKey).hasChild(currentUserID))
+                                    {
+                                        LikesRaf.child(PostKey).child(currentUserID).removeValue();
+                                        LikeChecker = false;
+                                    }
+                                    else
+                                    {
+                                        LikesRaf.child(PostKey).child(currentUserID).setValue(true);
+                                        LikeChecker=false;
+                                    }
+                                }
+
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+                    }
+                });
+
             }
             @NonNull
             @Override
@@ -190,10 +240,51 @@ public class MainActivity extends AppCompatActivity {
 
         View mView;
 
+        ImageButton LikePostButton,CommentPostButton;
+        TextView DisplayNoOfLikes;
+        int countLikes;
+        String currentUserId;
+        DatabaseReference LikesRaf;
+
         public PostsViewHolder(@NonNull View itemView) {
             super(itemView);
             mView = itemView;
+
+            LikePostButton = mView.findViewById(R.id.like_button);
+            CommentPostButton = mView.findViewById(R.id.comment_button);
+            DisplayNoOfLikes= mView.findViewById(R.id.display_no_of_likes);
+
+            LikesRaf = FirebaseDatabase.getInstance().getReference().child("Likes");
+            currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
         }
+        public void setLikeButtonStatus(final String PostKey)
+        {
+            LikesRaf.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+                {
+                    if(dataSnapshot.child(PostKey).hasChild(currentUserId)){
+                        countLikes= (int) dataSnapshot.child(PostKey).getChildrenCount();
+                        LikePostButton.setImageResource(R.drawable.like);
+                        DisplayNoOfLikes.setText(Integer.toString(countLikes)+(" Likes"));
+                    }
+                    else{
+                        countLikes= (int) dataSnapshot.child(PostKey).getChildrenCount();
+                        LikePostButton.setImageResource(R.drawable.dislike);
+                        DisplayNoOfLikes.setText(  Integer.toString(countLikes)+(" Likes"));
+
+                    }
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+        }
+
         public void setFullname (String fullname){
             TextView username = (TextView) mView.findViewById(R.id.post_user_name);
             username.setText(fullname);

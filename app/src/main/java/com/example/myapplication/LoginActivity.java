@@ -65,25 +65,22 @@ public class LoginActivity extends AppCompatActivity {
         googleSignInButton = (ImageView) findViewById(R.id.google_signin_button);
 
 
-
         NeedNewAccountLink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 SendUserToRegisterActivity();
             }
+        });
+        LoginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-
-
-
-
-            private void SendUserToRegisterActivity() {
-
-                Intent registerIntent = new Intent(LoginActivity.this,RegisterActivity.class);
-                startActivity(registerIntent);
-
+                AllowingUserToLogin();
+               
             }
         });
+
+
 
         // Configure Google Sign In
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
