@@ -8,9 +8,9 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/sociiab"
+        android:icon="@drawable/flyy"
         android:label="@string/app_name"
-        android:roundIcon="@drawable/applg"
+        android:roundIcon="@drawable/flyy"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".Splash">

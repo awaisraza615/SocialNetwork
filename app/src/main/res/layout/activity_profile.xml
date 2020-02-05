@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:background="@color/Mate"
+    android:gravity="center"
     android:layout_height="match_parent"
     tools:context=".ProfileActivity">
 
@@ -13,8 +14,10 @@
         android:layout_height="match_parent"
         android:layout_centerInParent="true">
 
-        <RelativeLayout
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
+            android:gravity="center"
             android:layout_height="match_parent">
 
 
@@ -58,7 +61,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/my_username"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="22dp"
+                android:padding="3dp"
                 android:text="XSL is an Application of XML,It is language for(XSLT)"
                 android:textAlignment="center"
                 android:textAllCaps="false"
@@ -113,8 +117,8 @@
                 android:textColor="@color/colorAccent"
                 android:textSize="18sp" />
 
-        </RelativeLayout>
+        </LinearLayout>
 
     </ScrollView>
 
-</RelativeLayout>
+</LinearLayout>

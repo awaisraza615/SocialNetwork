@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
     android:background="@color/Mate"
     tools:context=".SetupActivity">
 
@@ -11,78 +13,58 @@
         android:id="@+id/setup_profile_image"
         android:layout_width="200dp"
         android:layout_height="200dp"
+        android:src="@drawable/profile">
 
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="111dp"
-        android:src="@drawable/profile"></de.hdodenhof.circleimageview.CircleImageView>
+    </de.hdodenhof.circleimageview.CircleImageView>
 
     <EditText
         android:id="@+id/setup_username"
+        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginLeft="7dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginRight="7dp"
-        android:layout_marginBottom="373dp"
         android:background="@drawable/inputs"
         android:drawableLeft="@drawable/username"
         android:ems="10"
-        android:gravity="start|top"
+
         android:hint="username"
-        android:inputType="textMultiLine"
-        android:padding="14dp" />
+        android:inputType="textPersonName"
+        android:padding="8dp" />
 
     <EditText
         android:id="@+id/setup_fullname"
         android:layout_width="match_parent"
+        android:layout_marginTop="10dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginLeft="7dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginRight="7dp"
-        android:layout_marginBottom="293dp"
         android:background="@drawable/inputs"
         android:drawableLeft="@drawable/name"
         android:ems="10"
-        android:gravity="start|top"
         android:hint="FullName"
-        android:inputType="textMultiLine"
-        android:padding="14dp" />
+        android:inputType="textPersonName"
+        android:padding="8dp" />
 
     <EditText
         android:id="@+id/setup_country_name"
         android:layout_width="match_parent"
+        android:layout_marginTop="10dp"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginLeft="7dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginRight="7dp"
-        android:layout_marginBottom="217dp"
         android:background="@drawable/inputs"
         android:drawableLeft="@drawable/country"
         android:ems="10"
-        android:gravity="start|top"
         android:hint="Country"
-        android:inputType="textMultiLine"
-        android:padding="14dp" />
+        android:inputType="textPersonName"
+        android:padding="8dp" />
 
     <Button
         android:id="@+id/setup_information_button"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="104dp"
-        android:layout_marginBottom="143dp"
         android:background="@drawable/button"
-        android:padding="14dp"
+        android:layout_marginTop="10dp"
+        android:padding="5dp"
         android:text="Save"
         android:textColor="@android:color/background_light"
         android:textSize="20sp"
         android:textStyle="bold" />
 
-</RelativeLayout>
+</LinearLayout>

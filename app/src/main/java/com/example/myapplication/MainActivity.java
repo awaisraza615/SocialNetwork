@@ -405,18 +405,18 @@ public class MainActivity extends AppCompatActivity {
              case R.id.nav_profile:
                  SendUserToProfileActivity();
                  break;
-             case R.id.nav_home:
+             /*case R.id.nav_home:
                  Toast.makeText(this,"Home",Toast.LENGTH_SHORT).show();
-                 break;
-             case R.id.nav_friends:
+                 break;*/
+            /* case R.id.nav_friends:
                  Toast.makeText(this,"Friend List",Toast.LENGTH_SHORT).show();
-                 break;
+                 break;*/
              case R.id.nav_find_friends:
                  SendUserToFindfriendsActivity();
                  break;
-             case R.id.nav_messages:
+            /* case R.id.nav_messages:
                  Toast.makeText(this,"Messages",Toast.LENGTH_SHORT).show();
-                 break;
+                 break;*/
              case R.id.nav_settings:
                  SendUserToSettingsActivity();
                  break;

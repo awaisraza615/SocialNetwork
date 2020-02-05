@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#FFF15D54</color>
-    <color name="colorPrimaryDark">#03a1ab</color>
+    <color name="colorPrimaryDark">#035b96</color>
     <color name="colorAccent">#E8EDEE</color>
     <color name="colorProfile">#3B4041</color>
     <color name="mainBackground">#D7D7D7</color>
-    <color name="Mate">#3D3B3B</color>
+    <color name="Mate">#b001</color>
     <color name="colorBlue">#28A2CF</color>
     <color name="colorBl">#5468d5</color>
     <color name="colorPurple">#A130FF</color>

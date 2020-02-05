@@ -220,7 +220,7 @@ public class SetupActivity extends AppCompatActivity {
             userMap.put("username",username);
             userMap.put("fullname",fullname);
             userMap.put("country",country);
-            userMap.put("status","Hey there, i am using poster social newtwork, developed by Awais Raza.");
+            userMap.put("status","Hey there, i am using flyy society social newtwork, developed by Awais Raza.");
             userMap.put("gender","none");
             userMap.put("dob","none");
             userMap.put("relationshipstatus","none");
