@@ -100,10 +100,34 @@ public class CommentsActivity extends AppCompatActivity {
         });
     }
 
+   /* public void Showcomments()
+    {
+        FirebaseRecyclerOptions<Comments> options1 = new FirebaseRecyclerOptions.Builder<Comments>().setQuery(PostsRef, Comments.class).build();
+        FirebaseRecyclerAdapter adapter1 = new FirebaseRecyclerAdapter<Comments, CommentsViewHolder>(options1) {
+            @Override
+            protected void onBindViewHolder(@NonNull CommentsViewHolder commentsViewHolder, int i, @NonNull Comments comments) {
+                commentsViewHolder.setUsername(comments.getUsername());
+                commentsViewHolder.setComment(comments.getComment());
+                commentsViewHolder.setDate(comments.getDate());
+                commentsViewHolder.setTime(comments.getTime());
+            }
+
+            @NonNull
+            @Override
+            public CommentsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                View view = LayoutInflater.from(parent.getContext())
+                        .inflate(R.layout.all_comments_layout,parent,false);
+                return new CommentsViewHolder(view);
+            }
+        };
+        CommentsList.setAdapter(adapter1);
+        adapter1.startListening();
+    }*/
     @Override
     protected void onStart()
     {
         super.onStart();
+
 
         /*FirebaseRecyclerAdapter<Comments,CommentsViewHolder> firebaseRecyclerAdapter
                 = new FirebaseRecyclerAdapter<Comments, CommentsViewHolder>
@@ -188,7 +212,6 @@ public class CommentsActivity extends AppCompatActivity {
     private void validateComment(String userName)
     {
         String commentText= CommentInputText.getText().toString();
-
         if(TextUtils.isEmpty(commentText))
         {
             Toast.makeText(this, "Please Write text to comment", Toast.LENGTH_SHORT).show();
