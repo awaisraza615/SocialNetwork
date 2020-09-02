@@ -198,7 +198,7 @@ public class SettingsActivity extends AppCompatActivity {
 
             }
             else {
-                Toast.makeText(this, "Error ocurred Image can't be cropped try again", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Error occurred Image can't be cropped try again", Toast.LENGTH_SHORT).show();
                 loadingBar.dismiss();
             }
         }
