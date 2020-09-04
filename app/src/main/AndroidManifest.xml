@@ -13,7 +13,9 @@
         android:roundIcon="@drawable/flyy"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".DetailedNewsActivity"></activity>
+        <activity android:name=".DetailedScholarshipActivity"></activity>
+        <activity android:name=".ScholarshipsActivity" />
+        <activity android:name=".DetailedNewsActivity" />
         <activity android:name=".GlobalNewsActivity" />
         <activity android:name=".GlobalActivity" />
         <activity android:name=".HomeActivity">
