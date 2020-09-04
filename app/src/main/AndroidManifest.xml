@@ -13,17 +13,17 @@
         android:roundIcon="@drawable/flyy"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".HomeActivity" >
+        <activity android:name=".DetailedNewsActivity"></activity>
+        <activity android:name=".GlobalNewsActivity" />
+        <activity android:name=".GlobalActivity" />
+        <activity android:name=".HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".Splash">
-
-        </activity>
+        <activity android:name=".Splash" />
         <activity android:name=".ResetPasswordActivity" />
         <activity android:name=".CommentsActivity" />
         <activity android:name=".FindFriendsActivity" />
