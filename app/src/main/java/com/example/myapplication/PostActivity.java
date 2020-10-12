@@ -3,11 +3,15 @@ package com.example.myapplication;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -16,7 +20,16 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
 
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -38,6 +51,11 @@ public class PostActivity extends AppCompatActivity {
 
     private Toolbar mToolbar;
     private ProgressDialog loadingBar;
+
+    SupportMapFragment supportMapFragment;
+    private Button trackBtn;
+    private FusedLocationProviderClient fusedLocationProviderclient;
+    String getlatitude="", getlongtitude="";
 
     private ImageButton SelectPostImage;
     private Button UpdatePostButton;
@@ -85,6 +103,45 @@ public class PostActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Update Post");
 
 
+        supportMapFragment = (SupportMapFragment)getSupportFragmentManager()
+                .findFragmentById(R.id.map);
+        trackBtn = (Button) findViewById(R.id.trackBtn);
+        fusedLocationProviderclient = LocationServices.getFusedLocationProviderClient(this);
+
+
+        trackBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (ActivityCompat.checkSelfPermission(PostActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                    fusedLocationProviderclient.getLastLocation().addOnCompleteListener(new OnCompleteListener<Location>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Location> task) {
+
+                            final Location location = task.getResult();
+                            if (location != null) {
+                                supportMapFragment.getMapAsync(new OnMapReadyCallback() {
+                                    @Override
+                                    public void onMapReady(GoogleMap googleMap) {
+                                        LatLng latLng = new LatLng(location.getLatitude(),location.getLongitude());
+                                        getlatitude= String.valueOf(location.getLatitude());
+                                        getlongtitude= String.valueOf(location.getLongitude());
+                                        Log.d("latlong", "onComplete: " + getlongtitude + "  " + getlatitude);
+                                        MarkerOptions options = new MarkerOptions().position(latLng).title("You Are Here");
+                                        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng,10));
+                                        googleMap.addMarker(options);
+                                    }
+                                });
+                            }
+                        }
+                    });
+
+                } else {
+                    ActivityCompat.requestPermissions(PostActivity.this
+                            , new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 44);
+                }
+
+            }
+        });
         SelectPostImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -229,6 +286,8 @@ public class PostActivity extends AppCompatActivity {
                     postsMap.put("profileimage", userProfileImage);
                     postsMap.put("fullname", userFullName);
                     postsMap.put("counter",countPosts);
+                    postsMap.put("latitude",getlatitude);
+                    postsMap.put("longitude",getlongtitude);
                     PostsRef.child(current_user_id + postRandomName).updateChildren(postsMap)
                             .addOnCompleteListener(new OnCompleteListener() {
                                 @Override

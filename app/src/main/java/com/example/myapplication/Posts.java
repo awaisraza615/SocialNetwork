@@ -2,14 +2,14 @@ package com.example.myapplication;
 
 public class Posts {
 
-    public String uid, time, date, postimage, description, profileimage, fullname;
+    public String uid, time, date, postimage, description, profileimage, fullname , latitude , longitude;
 
     public Posts()
     {
 
     }
 
-    public Posts(String uid, String time, String date, String postimage, String description, String profileimage, String fullname) {
+    public Posts(String uid, String time, String date, String postimage, String description, String profileimage, String fullname,String latitude,String longitude) {
         this.uid = uid;
         this.time = time;
         this.date = date;
@@ -17,6 +17,24 @@ public class Posts {
         this.description = description;
         this.profileimage = profileimage;
         this.fullname = fullname;
+        this.latitude = latitude;
+        this.longitude = longitude;
+    }
+
+    public String getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
+    }
+
+    public String getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
     }
 
     public String getUid() {

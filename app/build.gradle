@@ -35,6 +35,8 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth:16.0.5'
     implementation 'com.google.firebase:firebase-database:16.0.4'
     implementation 'com.google.firebase:firebase-storage:16.0.4'
+    implementation 'com.google.android.gms:play-services-maps:17.0.0'
+    implementation 'com.google.android.gms:play-services-location:17.0.0'
     testImplementation 'junit:junit:4.13'
     implementation 'de.hdodenhof:circleimageview:3.1.0'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'

@@ -61,7 +61,7 @@ public class ScholarshipsActivity extends AppCompatActivity {
         protected Void doInBackground(Void... voids) {
 
             try {
-                String url = "https://mustakbilcorner.com/scholarships/";
+                String url = "https://mustakbilcorner.com/category/scholarships/";
 
                 Document doc = Jsoup.connect(url).get();
 
