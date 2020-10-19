@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.myapplication">
-
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but you must specify either coarse or fine
@@ -21,7 +20,9 @@
         android:roundIcon="@drawable/flyy"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
+        <activity android:name=".DetailActivity"></activity>
+        <activity android:name=".AffectedCountries" />
+        <activity android:name=".CovidActivity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -36,7 +37,7 @@
 
         <activity
             android:name=".MapsActivity"
-            android:label="@string/title_activity_maps"></activity>
+            android:label="@string/title_activity_maps" />
         <activity android:name=".DetailedScholarshipActivity" />
         <activity android:name=".ScholarshipsActivity" />
         <activity android:name=".DetailedNewsActivity" />
@@ -48,7 +49,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Splash" />
+        <activity android:name=".Splash" >
+
+        </activity>
         <activity android:name=".ResetPasswordActivity" />
         <activity android:name=".CommentsActivity" />
         <activity android:name=".FindFriendsActivity" />
@@ -63,6 +66,9 @@
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
             android:theme="@style/Base.Theme.AppCompat" />
+        <activity android:name=".LocationList" />
+        <activity android:name=".TopTenTrending" />
+        <activity android:name=".TwitterActivity" />
     </application>
 
 </manifest>

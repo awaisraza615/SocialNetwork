@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 public class HomeActivity extends AppCompatActivity {
 
-    private Button PublicPostBtn,GlobalPostBtn,ScholarshipPostBtn,CovidButton;
+    private Button PublicPostBtn,GlobalPostBtn,ScholarshipPostBtn,CovidButton,TwitterBtn;
     FragmentManager fragmentManager;
     FragmentTransaction fragmentTransaction;
     @Override
@@ -23,7 +23,10 @@ public class HomeActivity extends AppCompatActivity {
         PublicPostBtn=findViewById(R.id.publicpostbutton);
         GlobalPostBtn=findViewById(R.id.globalnewsbtn);
         ScholarshipPostBtn=findViewById(R.id.scholarshipbtn);
-        CovidButton=findViewById(R.id.Covidbuttion);
+        TwitterBtn=findViewById(R.id.twitterBtn);
+        CovidButton=findViewById(R.id.Covidbutton);
+
+
       /*  fragmentManager = getSupportFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
 
@@ -36,7 +39,7 @@ public class HomeActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent in = new Intent(HomeActivity.this,LoginActivity.class);
                 startActivity(in);
-                finish();
+              //  finish();
                // Toast.makeText(HomeActivity.this, "button", Toast.LENGTH_SHORT).show();
             }
         });
@@ -45,7 +48,7 @@ public class HomeActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent in = new Intent(HomeActivity.this,GlobalNewsActivity.class);
                 startActivity(in);
-                finish();
+              //  finish();
             }
         });
         ScholarshipPostBtn.setOnClickListener(new View.OnClickListener() {
@@ -53,15 +56,23 @@ public class HomeActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent in = new Intent(HomeActivity.this,ScholarshipsActivity.class);
                 startActivity(in);
-                finish();
+             //   finish();
+            }
+        });
+        TwitterBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               Intent in = new Intent(HomeActivity.this,TwitterActivity.class);
+                startActivity(in);
+              //  finish();
             }
         });
         CovidButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent in = new Intent(HomeActivity.this,MapsActivity.class);
+                Intent in = new Intent(HomeActivity.this,CovidActivity.class);
                 startActivity(in);
-                finish();
+                //  finish();
             }
         });
 

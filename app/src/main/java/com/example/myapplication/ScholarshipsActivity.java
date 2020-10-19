@@ -61,28 +61,29 @@ public class ScholarshipsActivity extends AppCompatActivity {
         protected Void doInBackground(Void... voids) {
 
             try {
-                String url = "https://mustakbilcorner.com/category/scholarships/";
+                String url = "https://www.studyabroad.pk/scholarships/search?studyid=-1&levelid=-1&countryid=56&submit=search";
 
                 Document doc = Jsoup.connect(url).get();
 
-                Elements data = doc.select("div.archive-wrapper");  //div.header
-                Elements data1 = doc.select("div.post-title-wrap");  //div.header
+                Elements data = doc.select("div.list-item");  //div.header
+                Elements data1 = doc.select("div.sch_media");  //div.header
+                Elements data2 = doc.select("div.sch_title");  //div.header
                 int size = data.size();
                 Log.d("doc", "doc: "+doc);
                 Log.d("data", "data: "+data);
                 Log.d("size", ""+size);
                 for (int i = 0; i < size; i++) {
-                    String imgUrl = data.select("div.entry-thumb")
+                    String imgUrl = data.select("div.sch_media")
                             .select("img")
                             .eq(i)
                             .attr("src");
 
-                    String title = data1.select("h2.entry-title")
+                    String title = data2.select("div.sch_title")
                             .select("a")
                             .eq(i)
                             .text();
 
-                    String detailUrl = data1.select("h2.entry-title")
+                    String detailUrl = data2.select("div.sch_title")
                             .select("a")
                             .eq(i)
                             .attr("href");

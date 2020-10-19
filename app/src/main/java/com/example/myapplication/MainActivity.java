@@ -435,6 +435,10 @@ public class MainActivity extends AppCompatActivity {
         startActivity(loginIntent);
 
     }
-
+    @Override
+    public void onBackPressed() {
+       startActivity(new Intent(MainActivity.this,HomeActivity.class));
+       finish();
+    }
 
 }

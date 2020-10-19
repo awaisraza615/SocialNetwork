@@ -46,7 +46,11 @@ public class LoginActivity extends AppCompatActivity {
     private TextView ForgetPasswordLink;
 
 
-
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(LoginActivity.this,HomeActivity.class));
+        finish();
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

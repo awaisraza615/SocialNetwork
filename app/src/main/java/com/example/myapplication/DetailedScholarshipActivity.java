@@ -30,7 +30,8 @@ public class DetailedScholarshipActivity extends AppCompatActivity {
         titleTExtView = findViewById(R.id.textView);
         /*  detailTextView = findViewById(R.id.detailTextView);*/
         webView=findViewById(R.id.webview);
-        detailUrl = getIntent().getStringExtra("detailUrl");
+        detailUrl = "https://www.studyabroad.pk/"+getIntent().getStringExtra("detailUrl");
+        Log.d("details", "onCreate: "+ detailUrl);
 
         titleTExtView.setText(getIntent().getStringExtra("title"));
         Picasso.get().load(getIntent().getStringExtra("image")).into(imageView);
