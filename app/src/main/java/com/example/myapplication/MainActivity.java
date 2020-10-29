@@ -272,12 +272,12 @@ public class MainActivity extends AppCompatActivity {
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     if (dataSnapshot.child(PostKey).hasChild(currentUserId)) {
                         countLikes = (int) dataSnapshot.child(PostKey).getChildrenCount();
-                        LikePostButton.setImageResource(R.drawable.like);
-                        DisplayNoOfLikes.setText(Integer.toString(countLikes) + (" Likes"));
+                        LikePostButton.setImageResource(R.drawable.rising);
+                        DisplayNoOfLikes.setText(Integer.toString(countLikes) + (" Raised"));
                     } else {
                         countLikes = (int) dataSnapshot.child(PostKey).getChildrenCount();
-                        LikePostButton.setImageResource(R.drawable.dislike);
-                        DisplayNoOfLikes.setText(Integer.toString(countLikes) + (" Likes"));
+                        LikePostButton.setImageResource(R.drawable.derising);
+                        DisplayNoOfLikes.setText(Integer.toString(countLikes) + (" Raised"));
 
                     }
 
@@ -399,7 +399,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(in);
                 finish();
                 break;
-            case R.id.nav_friends:
+           /* case R.id.nav_friends:
                 Toast.makeText(this, "Friend List", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_find_friends:
@@ -407,7 +407,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.nav_messages:
                 Toast.makeText(this, "Messages", Toast.LENGTH_SHORT).show();
-                break;
+                break;*/
             case R.id.nav_settings:
                 SendUserToSettingsActivity();
                 break;

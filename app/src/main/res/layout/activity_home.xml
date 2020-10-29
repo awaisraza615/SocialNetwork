@@ -5,52 +5,218 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
+    android:background="@color/colorPrimaryDark"
     android:orientation="vertical"
+    android:padding="10dp"
     tools:context=".HomeActivity">
 
 
-    <Button
-        android:id="@+id/twitterBtn"
+<ScrollView
+    android:layout_marginTop="30dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:background="@color/colorPrimaryDark"
+        >
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginBottom="10dp"
+        >
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:background="@drawable/button"
+            android:orientation="vertical"
+            android:layout_marginRight="10dp"
+
+            android:padding="10dp">
+
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/twitter" />
+
+            <Button
+                android:layout_marginTop="10dp"
+                android:id="@+id/twitterBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_round"
+                android:padding="10dp"
+                android:textSize="12sp"
+                android:textColor="@color/white"
+                android:text="Twitter Trends"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:background="@drawable/button"
+            android:padding="10dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/publicnews" />
+
+
+
+            <Button
+                android:id="@+id/publicpostbutton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Public News"
+                android:background="@drawable/bg_round"
+                android:padding="10dp"
+                android:textColor="@color/white"
+                android:layout_marginTop="10dp"
+                />
+        </LinearLayout>
+
+    </LinearLayout>
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:height="33dp"
-        android:background="#3f3af7"
-        android:text="Check"
-        android:textColor="#fff"
-   />
+        android:layout_marginBottom="10dp"
+        >
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/button"
+            android:padding="10dp">
 
-    <Button
-        android:id="@+id/publicpostbutton"
-        android:layout_width="wrap_content"
-        android:layout_height="33dp"
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/globalnews" />
 
-        android:background="#26e3d4"
-        android:paddingHorizontal="8dp"
-        android:text="Public News"
-        android:textColor="#fff" />
 
-    <Button
-        android:id="@+id/globalnewsbtn"
-        android:layout_width="wrap_content"
-        android:layout_height="33dp"
-        android:background="#26e3d4"
-        android:text="Global News"
-        android:textColor="#fff" />
+            <Button
+                android:id="@+id/globalnewsbtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_round"
+                android:padding="10dp"
+                android:textColor="@color/white"
+                android:layout_marginTop="10dp"
+                android:text="Global News"
+                />
+        </LinearLayout>
 
-    <Button
-        android:id="@+id/scholarshipbtn"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:background="@drawable/button"
+            android:padding="10dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/scholarship" />
+
+
+
+            <Button
+                android:id="@+id/scholarshipbtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_round"
+                android:padding="10dp"
+                android:textColor="@color/white"
+                android:textSize="10sp"
+                android:text="Scholarships News"
+                android:layout_marginTop="10dp"
+                />
+        </LinearLayout>
+
+    </LinearLayout>
+    <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="33dp"
-        android:background="#26e3d4"
-        android:text="Scholarships News"
-        android:textColor="#fff" />
-    <Button
-        android:id="@+id/Covidbutton"
-        android:layout_width="wrap_content"
-        android:layout_height="33dp"
-        android:background="#26e3d4"
-        android:text="Covid News"
-        android:textColor="#fff" />
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/button"
+            android:padding="10dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:src="@drawable/covidnews" />
+
+            <Button
+                android:id="@+id/Covidbutton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_round"
+                android:padding="10dp"
+                android:text="Covid News"
+                android:textColor="@color/white" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/aboutus" />
+
+
+            <Button
+                android:id="@+id/aboutapp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_round"
+                android:padding="10dp"
+                android:textColor="@color/white"
+                android:text="About Us"
+                android:layout_marginTop="10dp"
+                />
+        </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>
+
+    </LinearLayout>
+
+
+
+
+
+
 
 
 
@@ -291,4 +457,4 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>-->
 
-</LinearLayout>
+

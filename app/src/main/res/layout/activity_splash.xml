@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/Mate"
+    android:background="@color/colorPrimaryDark"
     tools:context=".Splash">
 
     <ImageView
@@ -12,8 +12,8 @@
         android:layout_width="292dp"
         android:layout_height="204dp"
         android:filterTouchesWhenObscured="false"
-        android:scaleType="centerCrop"
-        android:src="@drawable/flyy"
+        android:scaleType="fitCenter"
+        android:src="@drawable/lghelp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"

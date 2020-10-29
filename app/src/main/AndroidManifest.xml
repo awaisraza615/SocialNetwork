@@ -15,9 +15,9 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/flyy"
+        android:icon="@drawable/lghelp"
         android:label="@string/app_name"
-        android:roundIcon="@drawable/flyy"
+        android:roundIcon="@drawable/lghelp"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".DetailActivity"></activity>
@@ -43,14 +43,14 @@
         <activity android:name=".DetailedNewsActivity" />
         <activity android:name=".GlobalNewsActivity" />
         <activity android:name=".HomeActivity">
+
+        </activity>
+        <activity android:name=".Splash" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity android:name=".Splash" >
-
         </activity>
         <activity android:name=".ResetPasswordActivity" />
         <activity android:name=".CommentsActivity" />
