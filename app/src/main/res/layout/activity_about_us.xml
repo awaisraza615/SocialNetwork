@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AboutUsActivity"
+    android:background="@color/white"
+    android:padding="10dp">
+
+
+    <TextView
+        android:id="@+id/textView4"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="App Licience"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.143"
+        tools:layout_editor_absoluteX="9dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        app:layout_constraintVertical_bias="0.062"
+        tools:layout_editor_absoluteX="10dp"
+        android:textSize="20sp"
+        android:text="This App is Created By\nGroup Leader\nAwais Raza\n
+         And Members\nAbdul Rehman\nMuhammad Adnan\nRaza Akbar\nUnder The Supervision Of\nProf. Adnan Manzoor Rajper\nThis App serves Human Community\n For Knowledge Purpose."
+        />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

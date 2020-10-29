@@ -20,7 +20,8 @@
         android:roundIcon="@drawable/lghelp"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".DetailActivity"></activity>
+        <activity android:name=".AboutUsActivity"></activity>
+        <activity android:name=".DetailActivity" />
         <activity android:name=".AffectedCountries" />
         <activity android:name=".CovidActivity" />
         <!--
@@ -42,10 +43,8 @@
         <activity android:name=".ScholarshipsActivity" />
         <activity android:name=".DetailedNewsActivity" />
         <activity android:name=".GlobalNewsActivity" />
-        <activity android:name=".HomeActivity">
-
-        </activity>
-        <activity android:name=".Splash" >
+        <activity android:name=".HomeActivity"></activity>
+        <activity android:name=".Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

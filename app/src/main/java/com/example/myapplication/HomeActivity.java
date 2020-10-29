@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 public class HomeActivity extends AppCompatActivity {
 
-    private Button PublicPostBtn,GlobalPostBtn,ScholarshipPostBtn,CovidButton,TwitterBtn;
+    private Button PublicPostBtn,GlobalPostBtn,ScholarshipPostBtn,CovidButton,TwitterBtn,AboutusBtn;
     FragmentManager fragmentManager;
     FragmentTransaction fragmentTransaction;
     @Override
@@ -25,6 +25,7 @@ public class HomeActivity extends AppCompatActivity {
         ScholarshipPostBtn=findViewById(R.id.scholarshipbtn);
         TwitterBtn=findViewById(R.id.twitterBtn);
         CovidButton=findViewById(R.id.Covidbutton);
+        AboutusBtn=findViewById(R.id.aboutapp);
 
 
       /*  fragmentManager = getSupportFragmentManager();
@@ -75,6 +76,15 @@ public class HomeActivity extends AppCompatActivity {
                 //  finish();
             }
         });
+         AboutusBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent in = new Intent(HomeActivity.this,AboutUsActivity.class);
+                startActivity(in);
+                //  finish();
+            }
+        });
+
 
     }
 }
