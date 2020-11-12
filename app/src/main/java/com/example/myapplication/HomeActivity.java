@@ -81,7 +81,7 @@ public class HomeActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent in = new Intent(HomeActivity.this,AboutUsActivity.class);
                 startActivity(in);
-                //  finish();
+                  finish();
             }
         });
 
