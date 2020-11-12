@@ -4,6 +4,7 @@
     <string name="drawer_close">Drawer Close</string>
     <string name="title_activity_maps">Map</string>
 
+    <string name="twittertrends">In Twitter, a word, phrase, or topic that is mentioned at a greater rate than others is said to be a trending topic or simply a trend. Trending topics become popular either through a concerted effort by users or because of an event that prompts people to talk about a specific topic. These topics help Twitter and their users to understand what is happening in the world and what people\'s opinions are about it.</string>
 
     <string name="action_settings">Settings</string>
     <string name="Locations">Locations</string>
@@ -18,7 +19,7 @@
     <string name="aboutTitle">Title</string>
     <string name="edit_location">Enter Location</string>
     <string name="button_search">Search</string>
-    <string name="GeoTrending">GeoTrending</string>
+    <string name="GeoTrending">Twitter Trends</string>
     <string name="Test">Test</string>
     <string name="title_activity_scrolling_locations">ScrollingLocations</string>
     <string name="large_text">
