@@ -32,7 +32,7 @@
         app:layout_constraintVertical_bias="0.062"
         tools:layout_editor_absoluteX="10dp"
         android:textSize="20sp"
-        android:text="This App is Created By\nGroup Leader\nAwais Raza\nAnd Members\nAbdul Rehman\nMuhammad Adnan\nRaza Akbar\nUnder The Supervision Of\nProf. Adnan Manzoor Rajper\nThis App serves Human Community\n For Knowledge Purpose."
+        android:text="This App is Created By\nGroup Leader\nAwais Raza\nAnd Members\nAbdul Rehman\nMuhammad Adnan\nRaza Akbar\nUnder The Supervision Of\nProf. Dr Adnan Manzoor Rajper\nThis App serves Human Community\n For Knowledge Purpose."
         />
 
 
